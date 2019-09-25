@@ -47,9 +47,7 @@ const isTodoDue = (todo, daysLeft) => {
 
 export const ToDoListForm = ({ toDoList, onUpdate }) => {
   const classes = useStyles();
-  const setTodos = (todos) => {
-    onUpdate(todos);
-  }
+  const setTodos = onUpdate;
 
   return (
     <Card className={classes.card}>
