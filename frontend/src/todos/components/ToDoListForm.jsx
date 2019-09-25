@@ -64,14 +64,13 @@ export const ToDoListForm = ({ toDoList, onUpdate }) => {
               <CustomTextField
                 label='What to do?'
                 value={todo.title}
-                onChange={event => { // TODO: Should be debounced 
-                  updateTodo({ ...todo, title: event.target.value })
-                    .then((updatedTodo) =>
-                      setTodos([ // immutable update
-                        ...toDoList.todos.slice(0, index),
-                        updatedTodo,
-                        ...toDoList.todos.slice(index + 1)
-                      ]))
+                onChange={event => { 
+                  updateTodo({ ...todo, title: event.target.value }) // TODO: Should be debounced 
+                  setTodos([ // immutable update
+                    ...toDoList.todos.slice(0, index),
+                    { ...todo, title: event.target.value },
+                    ...toDoList.todos.slice(index + 1)
+                  ]);
                 }}
                 className={classes.textField}
               />
