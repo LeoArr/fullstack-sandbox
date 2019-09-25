@@ -9,12 +9,7 @@ import ReceiptIcon from '@material-ui/icons/Receipt'
 import Typography from '@material-ui/core/Typography'
 import { ToDoListForm } from './ToDoListForm'
 import { Checkbox } from '@material-ui/core';
-import axios from 'axios';
-
-const getPersonalTodos = () => {
-  return axios.get('http://localhost:3001/todo-list')
-  	.then(res => res.data);
-}
+import { getPersonalTodos } from '../../shared/Resources';
 
 export const ToDoLists = ({ style }) => {
   const [toDoLists, setToDoLists] = useState({})

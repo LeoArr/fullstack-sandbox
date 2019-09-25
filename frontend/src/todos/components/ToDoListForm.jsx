@@ -10,8 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import { CustomTextField } from '../../shared/FormFields'
 import TextField from '@material-ui/core/TextField';
 import { Checkbox } from '@material-ui/core';
-import axios from 'axios';
-import debounce from 'lodash.debounce';
+import { addTodo, updateTodo, removeTodo} from '../../shared/Resources';
 
 const useStyles = makeStyles({
   card: {
@@ -46,21 +45,6 @@ const isTodoDue = (todo, daysLeft) => {
   return dueDate.setDate(dueDate.getDate() - daysLeft) < new Date();
 }
 
-const updateTodo = (todo) => {
-  return axios.put('http://localhost:3001/todo', todo)
-    .then(res => res.data);
-}
-
-const removeTodo = (todoId) => {
-  return axios.delete('http://localhost:3001/todo/' + todoId)
-    .then(res => res.data);
-}
-
-const addTodo = (listId) => {
-  return axios.post('http://localhost:3001/todo-list/' + listId + '/todo')
-    .then(res => res.data);
-}
-
 export const ToDoListForm = ({ toDoList, onUpdate }) => {
   const classes = useStyles();
   const setTodos = (todos) => {
@@ -82,7 +66,7 @@ export const ToDoListForm = ({ toDoList, onUpdate }) => {
               <CustomTextField
                 label='What to do?'
                 value={todo.title}
-                onChange={event => { // TODO: Should be debounced
+                onChange={event => { // TODO: Should be debounced 
                   updateTodo({ ...todo, title: event.target.value })
                     .then((updatedTodo) =>
                       setTodos([ // immutable update
