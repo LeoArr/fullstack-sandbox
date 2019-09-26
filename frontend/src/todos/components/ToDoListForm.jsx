@@ -24,10 +24,10 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   soonDue: {
-    backgroundColor: 'yellow',
+    color: 'yellow',
   },
   overDue: {
-    backgroundColor: 'red',
+    color: 'red',
   },
   standardSpace: {
     margin: '8px'
